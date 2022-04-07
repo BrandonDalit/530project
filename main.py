@@ -5,7 +5,6 @@
 #string1 != string 2 == 0 scoop of food
 #string2 == string2 == 2 scoops of food
 #then loop around 
-
 import RPi.GPIO as GPIO
 import time
 from mfrc522 import SimpleMFRC522
@@ -19,13 +18,14 @@ x = True
 def check():
         if text == pw_1:
                 print("1 scoop")
-        
+
         elif text == pw_2:
                 print("2 scoop")
-                
-        else: 
+
+        else:
                 print("0 scoop")
-        time.sleep(10)
+        print("5 seconds")
+        time.sleep(5)
 
 reader = SimpleMFRC522()
 
@@ -41,7 +41,6 @@ try:
                 print(id)
                 print(text)
                 check()
-                time.sleep(10)
 
 finally:
         GPIO.cleanup()
