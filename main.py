@@ -26,6 +26,7 @@ def check():
                 print("0 scoop")
         print("5 seconds")
         time.sleep(5)
+        print("ready...")
 
 reader = SimpleMFRC522()
 
@@ -38,8 +39,6 @@ try:
         while x:
                 print("tap NFC Card")
                 id, text = reader.read()
-                print(id)
-                print(text)
                 check()
 
 finally:
