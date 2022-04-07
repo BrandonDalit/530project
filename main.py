@@ -16,6 +16,17 @@ pw_2 = "twoscoop"
 
 x = True
 
+def check():
+        if text == pw_1:
+                print("1 scoop")
+        
+        elif text == pw_2:
+                print("2 scoop")
+                
+        else: 
+                print("0 scoop")
+        time.sleep(10)
+
 reader = SimpleMFRC522()
 
 try:
@@ -29,30 +40,8 @@ try:
                 id, text = reader.read()
                 print(id)
                 print(text)
-
-        if text == pw_1:
-                print("1 scoop")
-                time.sleep(60)
-
-        elif text == pw_2:
-                print("2 scoop")
-                time.sleep(60)
-
-        else:
-                print("0 scoop")
-                time.sleep(60)
-
-finally:
-        GPIO.cleanup()
-
-
-
-
-
-                print("2 scoop")
-
-        else:
-                print("0 scoop")
+                check()
+                time.sleep(10)
 
 finally:
         GPIO.cleanup()
