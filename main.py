@@ -7,13 +7,14 @@
 #then loop around 
 
 import RPi.GPIO as GPIO
+import time
 from mfrc522 import SimpleMFRC522
 GPIO.setwarnings(False)
 
 pw_1 = "onescoop"
 pw_2 = "twoscoop"
 
-x = 0
+x = True
 
 reader = SimpleMFRC522()
 
@@ -23,7 +24,7 @@ try:
         print(id)
         print(text)
 
-        while x < 1 :
+        while x:
                 print("tap NFC Card")
                 id, text = reader.read()
                 print(id)
@@ -31,8 +32,23 @@ try:
 
         if text == pw_1:
                 print("1 scoop")
+                time.sleep(60)
 
         elif text == pw_2:
+                print("2 scoop")
+                time.sleep(60)
+
+        else:
+                print("0 scoop")
+                time.sleep(60)
+
+finally:
+        GPIO.cleanup()
+
+
+
+
+
                 print("2 scoop")
 
         else:
