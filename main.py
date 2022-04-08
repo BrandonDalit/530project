@@ -15,18 +15,18 @@ pw_2 = "twoscoop"
 
 x = True
 
-def check():
-        if text == pw_1:
-                print("1 scoop")
+def check(text):
+    if text == pw_1 :
+        print("1 scoop")
 
-        elif text == pw_2:
-                print("2 scoop")
+    elif text == pw_2 :
+        print("2 scoop")
 
-        else:
-                print("0 scoop")
-        print("5 seconds")
-        time.sleep(5)
-        print("ready...")
+    elif text != pw_1 and text != pw_2:
+        print("0 scoop")
+    print("5 seconds")
+    time.sleep(5)
+    print("ready...")
 
 reader = SimpleMFRC522()
 
@@ -39,7 +39,8 @@ try:
         while x:
                 print("tap NFC Card")
                 id, text = reader.read()
-                check()
+                print("NFC Password scanned is: " + text)
+                check(text.strip())
 
 finally:
         GPIO.cleanup()
