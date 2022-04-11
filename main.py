@@ -21,31 +21,39 @@ GPIO.setup(servo_control_pin, GPIO.OUT)
 pwm_freq = 100
 forward = 20
 backward = 10
-
-x = True
+co = 0
 
 #activate the servo
-    pwm = GPIO.PWM(servo_control_pin, pwm_freq)
+pwm = GPIO.PWM(servo_control_pin, pwm_freq)
 
 def check(text):
+    global co
+
     if text == pw_1 :
         #print("1 scoop")
         pwm.start(forward)
-        time.sleep(3)
+        time.sleep(.3)
         pwm.ChangeDutyCycle(backward)
         time.sleep(3)
+        co = 0
 
-    elif text == pw_2 :
+    if text == pw_2 :
         #print("2 scoop")
         pwm.start(forward)
-        time.sleep(6)
-        pwm.ChangeDutyCycle(backward)
-        time.sleep(6)
-
-    elif text != pw_1 and text != pw_2:
+        time.sleep(.6)        
+        co = 0
+    
+    if text != pw_1 and text != pw_2:
         print("0 scoop")
-    print("5 seconds")
-    time.sleep(5)
+        co = co + 1
+        time.sleep(2)
+    
+    if co == 5:
+       print("Cooldown...")
+       co = 0
+       time.sleep(30)
+    #print("5 seconds")
+    #time.sleep(5)
     print("ready...")
 
 reader = SimpleMFRC522()
@@ -55,13 +63,16 @@ try:
         id, text = reader.read()
         print(id)
         print(text)
+        pwm.start(0)
 
-        while x:
+        while True:
+
                 print("tap NFC Card")
                 id, text = reader.read()
                 print("NFC Password scanned is: " + text)
                 check(text.strip())
-
+                
 finally:
         pwm.stop()
         GPIO.cleanup()
+
