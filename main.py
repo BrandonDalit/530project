@@ -32,29 +32,28 @@ te1 = 0 #Time End
 te2 = 0 #Time End
 tn1 = 0
 tn2 = 0
-flag1 = false
-flag2 = false
+flag1 = False
+flag2 = False
 
 
 #activate the servo
 pwm = GPIO.PWM(servo_control_pin, pwm_freq)
 
-def timer(text):
+def timer(text):    
     global tb1, tb2, te1, te2, tn1, tn2
-    now = time.time(seconds)
+    now = time.time()
     
     #Starts to add the delay for pw_1
-    if text == pw_1 and flag1 == true:
+    if text == pw_1 and flag1 == True:
         tn1 = now
         tb1 = now
         te1 = te1 + t1
     
     #Starts to add the delay for pw_2
-    elif text == pw_2 and flag2 == true:
+    elif text == pw_2 and flag2 == True:
         tn2 = now
         tb2 = now
-        te2 = tb2 + t2
-        
+        te2 = tb2 + t2        
     else:
         tn1 = now
         tn2 = now
@@ -63,15 +62,14 @@ def timer(text):
 def timout():
     global tb1, te2, flag1, flag2
     if tn1 >= te1:
-        flag1 = true
+        flag1 = True
     
     elif tn2 >= te2:
-        flag2 = true
+        flag2 = True
     
     else:
-        flag1 = false
-        flag2 = false
-    
+        flag1 = False
+        flag2 = False
 
 def check(text):
     global co
@@ -101,8 +99,8 @@ def check(text):
        time.sleep(30)
     #print("5 seconds")
     #time.sleep(5)
-    print("ready...")
-
+    print("ready...\n")
+    
 reader = SimpleMFRC522()
 
 try:
@@ -121,22 +119,23 @@ try:
                 if text.strip() == pw_1:
                     timout()
                     timer(pw_1)
-                    if tb1 = tn1 == te1:
+                    if tb1 == tn1 == te1 and flag1 == True:
                         print("Time started: " + time.ctime(tn1) + ".")
-                    else:
+                        check(text.strip())
+                    elif flag1 == True:
                         print("Time started: " + time.ctime(tn1) + ", timeout will halt after " + time.ctime(tn1 + t1) + ".")
-                    check(text.strip())
+                        check(text.strip())
                     
                 elif text.strip() == pw_2:
                     timout()
                     timer(pw_2)
-                    if tb2 = tn2 == te2:
+                    if tb2 == tn2 == te2 and flag2 == True:
                         print("Time started: " + time.ctime(tn2) + ".")
-                    else:
+                        check(text.strip())
+                    elif flag2 == True:
                         print("Time started: " + time.ctime(tn2) + ", timeout will halt after " + time.ctime(tn2 + t2) + ".")
-                    check(text.strip())
+                        check(text.strip())
                 
 finally:
         pwm.stop()
         GPIO.cleanup()
-
