@@ -8,7 +8,7 @@ Thien Bui
 
 What needs to be done
 
-1) Finalize dispenser we are using
-2) Finalize hardware setup
-3) Setup GIO servo
-4) Code servo into print statements
+1) Finalize dispenser we are using - Done
+2) Finalize hardware setup - IP
+3) Setup GIO servo - Done 
+4) Code servo into print statements - Done
