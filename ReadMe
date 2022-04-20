@@ -6,9 +6,28 @@ Zaynab Abdi
 Nathalie Gaviran
 Thien Bui
 
-What needs to be done
+Video: https://youtu.be/zxEEG54GAt0
 
-1) Finalize dispenser we are using - Done
-2) Finalize hardware setup - Done
-3) Setup GIO servo - Done 
-4) Code servo into print statements - Done
+NFC Dog Feeder
+
+The tags that are shown in the video are just for reference and for show. But tags like the blue one will be attached to the collar of the dogs, 
+as they approach the feeder the NFC reader will read the card and dispense food according to the password that is stored on the card.
+
+Each NFC card is uniquely written on with a specific code, and the code will determine how much food is dispensed.
+
+USAGE:
+
+Power the Raspberry PI and allow it to load and fetch all new times from this github. Each time the PI is booted it will always fetch from here, so all updates on 
+the GIT will reflect on the PI. After it has booted, all scans can occur. 
+
+FEATURES:
+
+Tag 1 - dispenses 1 scoop(s) of food
+Tag 2 - dispenses 2 scoop(s) of food
+
+Lockout - Each tag has its own independent lockout feature
+  Tag 1 - has a 3 hour lockout (3 seconds for demo purposes)
+  Tag 2 - has a 2 hour lockout (2 seconds for demo purposes)
+  
+If a tag that is not stored on the device has been scanned, a counter will occur. 
+5 scans of a unknown device will cause the PI to lockout, not allowing anymore scans for a small period of time (30 seconds).
