@@ -108,13 +108,19 @@ def check(text):
 reader = SimpleMFRC522()
 
 try:
-        id, text = reader.read() #reads NFC contents and assings them to each ID and TEXT password
+        #id, text = reader.read() #reads NFC contents and assings them to each ID and TEXT password
+        
+        id, text = reader.read_no_block()
+        
         pwm.start(0)
 
         while True:
 
                 print("tap NFC Card")
-                id, text = reader.read()
+                #id, text = reader.read()
+                
+                id, text = reader.read_no_block()
+                
                 print("NFC Password scanned is: " + text)
                 
                 #checks for matching password then, timout if it has passed the end time, if so then calculates the next time, lastly dispenses food
