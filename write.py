@@ -10,7 +10,8 @@ try:
         print("Tap NFC device")
         #reader.write(text)
         #id, text_in = reader.write_no_block(text)
-        id, text_in = reader.write()
+        #id, text_in = reader.write(text)
+        id, text_in = reader.write_block(text)
         print("Success")
 finally:
         GPIO.cleanup()
