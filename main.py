@@ -110,7 +110,7 @@ reader = SimpleMFRC522()
 try:
         #id, text = reader.read() #reads NFC contents and assings them to each ID and TEXT password
         
-        id, text = reader.read_no_block()
+        id, text = reader.read()
         
         pwm.start(0)
 
@@ -119,7 +119,7 @@ try:
                 print("tap NFC Card")
                 #id, text = reader.read()
                 
-                id, text = reader.read_no_block()
+                id, text = reader.read()
                 
                 print("NFC Password scanned is: " + text)
                 
