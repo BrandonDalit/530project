@@ -121,7 +121,7 @@ try:
                 
                 id, text = reader.read()
                 
-                print("NFC Password scanned is: " + text)
+                #print("NFC Password scanned is: " + text)
                 
                 #checks for matching password then, timout if it has passed the end time, if so then calculates the next time, lastly dispenses food
                 if text.strip() == pw_1:
