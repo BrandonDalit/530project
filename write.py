@@ -9,7 +9,8 @@ try:
         text = input('Password:')
         print("Tap NFC device")
         #reader.write(text)
-        id, text_in = reader.write_no_block(text)
+        #id, text_in = reader.write_no_block(text)
+        id, text_in = reader.write()
         print("Success")
 finally:
         GPIO.cleanup()
