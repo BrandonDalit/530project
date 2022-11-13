@@ -8,7 +8,7 @@ reader = SimpleMFRC522()
 try:
         print("tap NFC Card")
         #id, text = reader.read()
-        id, text = reader.read_no_block()
+        id, text = reader.read()
         print(id)
         print(text)
         
