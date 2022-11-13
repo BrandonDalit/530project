@@ -8,7 +8,8 @@ GPIO.setwarnings(False)
 try:
         text = input('Password:')
         print("Tap NFC device")
-        reader.write(text)
+        #reader.write(text)
+        id, text_in = reader.write_no_block(text)
         print("Success")
 finally:
         GPIO.cleanup()
